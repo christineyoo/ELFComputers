@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import List from "./List/List";
 
-// This object will allow us to
-// easily convert numbers into US dollar values
 const USCurrencyFormat = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
@@ -108,11 +106,6 @@ class App extends Component {
     // The NavBar section
     return (
       <>
-        <List
-          onUpdateFeature={this.updateFeature}
-          features={this.state.allFeatures}
-          selected={this.state}
-        />
         <div className="App">
           <header>
             <h1>ELF Computing | Laptops</h1>
@@ -120,8 +113,13 @@ class App extends Component {
           <main>
             <form className="main__form">
               <h2>Customize your laptop</h2>
-              {/* {features} */}
+              <List
+                onUpdateFeature={this.updateFeature}
+                features={this.state.allFeatures}
+                selected={this.state}
+              />
             </form>
+
             <section className="main__summary">
               <h2>Your cart</h2>
               {summary}

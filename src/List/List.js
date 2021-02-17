@@ -3,13 +3,13 @@ import ListItem from "../ListItem/ListItem";
 
 class List extends Component {
   render() {
-    const featuresArr = Object.keys(this.props.features).map((feature, idx) => {
+    const featuresKeyArr = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + "-" + idx;
 
       return (
         <fieldset className="feature" key={featureHash}>
           <legend className="feature__name">
-            <h3>{feature}Hello</h3>
+            <h3>{feature}</h3>
           </legend>
           <ListItem
               onUpdateFeature={this.updateFeature}
@@ -18,7 +18,7 @@ class List extends Component {
         </fieldset>
       );
     });
-    return (<>{featuresArr}</>)
+    return (<>{featuresKeyArr}</>)
   }
 }
 
