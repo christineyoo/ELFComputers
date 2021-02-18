@@ -1,44 +1,37 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import TotalPrice from "../TotalPrice/TotalPrice";
 
 const USCurrencyFormat = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-  
+  style: "currency",
+  currency: "USD",
+});
+
 class CartList extends Component {
-    render() { 
-        // Your cart section
+  render() {
+    // Your cart section
     const summary = Object.keys(this.props.selected).map((feature, idx) => {
-        const featureHash = feature + "-" + idx;
-        const selectedOption = this.props.selected[feature];
-  
-        return (
-          <div className="summary__option" key={featureHash}>
-            <div className="summary__option__label">{feature} </div>
-            <div className="summary__option__value">{selectedOption.name}</div>
-            <div className="summary__option__cost">
-              {USCurrencyFormat.format(selectedOption.cost)}
-            </div>
-          </div>
-        );
-      });
-  
-      // Calculates the total cost
-      const total = Object.keys(this.props.selected).reduce(
-        (acc, curr) => acc + this.props.selected[curr].cost,
-        0
-      );
-        return ( <section className="main__summary">
-        <h2>Your cart</h2>
-        {summary}
-        <div className="summary__total">
-          <div className="summary__total__label">Total</div>
-          <div className="summary__total__value">
-            {USCurrencyFormat.format(total)}
+      const featureHash = feature + "-" + idx;
+      const selectedOption = this.props.selected[feature];
+
+      return (
+        <div className="summary__option" key={featureHash}>
+          <div className="summary__option__label">{feature} </div>
+          <div className="summary__option__value">{selectedOption.name}</div>
+          <div className="summary__option__cost">
+            {USCurrencyFormat.format(selectedOption.cost)}
           </div>
         </div>
-      </section> );
-    }
+      );
+    });
+
+    return (
+      <section className="main__summary">
+        <h2>Your cart</h2>
+        {summary}
+        <TotalPrice selected={this.props.selected} />
+      </section>
+    );
+  }
 }
- 
+
 export default CartList;
