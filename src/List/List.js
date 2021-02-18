@@ -14,6 +14,7 @@ class List extends Component {
           <ListItem
               onUpdateFeature={this.updateFeature}
               features={this.props.features}
+              selected={this.props.selected}
             />
         </fieldset>
       );

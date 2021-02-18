@@ -116,7 +116,7 @@ class App extends Component {
               <List
                 onUpdateFeature={this.updateFeature}
                 features={this.state.allFeatures}
-                selected={this.state}
+                selected={this.state.selected}
               />
             </form>
 
