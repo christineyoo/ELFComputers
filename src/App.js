@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import List from "./List/List";
+import NavBar from "./NavBar/NavBar";
 
 const USCurrencyFormat = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -107,18 +108,13 @@ class App extends Component {
     return (
       <>
         <div className="App">
-          <header>
-            <h1>ELF Computing | Laptops</h1>
-          </header>
+          <NavBar />
           <main>
-            <form className="main__form">
-              <h2>Customize your laptop</h2>
-              <List
-                onUpdateFeature={this.updateFeature}
-                features={this.state.allFeatures}
-                selected={this.state.selected}
-              />
-            </form>
+            <List
+              onUpdateFeature={this.updateFeature}
+              features={this.state.allFeatures}
+              selected={this.state.selected}
+            />
 
             <section className="main__summary">
               <h2>Your cart</h2>
