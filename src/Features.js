@@ -1,18 +1,8 @@
 import React, { Component } from "react";
-import Features from "../Features.js";
 
-// Creates a string that is safe to use in both URLs and html attributes
-import slugify from "slugify";
-
-// This object converts numbers into US dollar values
-const USCurrencyFormat = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
-
-class ListItem extends Component {
-  state = {
-    allFeatures: {
+class Features extends Component {
+  render() {
+    const FEATURES = {
       Processor: [
         {
           name: "17th Generation Intel Core HB (7 Core with donut spare)",
@@ -53,16 +43,9 @@ class ListItem extends Component {
           cost: 1400,
         },
       ],
-    },
-  };
-
-  render() {
-    console.log(<Features/>);
-    const features = Object.keys(this.state.allFeatures).map(
-      (feature) => feature
-    );
-    return <div>Hello</div>;
+    };
+    return <>{FEATURES}</>;
   }
 }
 
-export default ListItem;
+export default Features;
