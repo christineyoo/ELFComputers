@@ -8,48 +8,29 @@ const USCurrencyFormat = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-
-
-  // const options = () => {
-  //   this.props.features.map((item) => {
-  //     const itemHash = slugify(JSON.stringify(item));
-  //     return (
-  //       <div key={itemHash} className="feature__item">
-  //         <input
-  //           type="radio"
-  //           id={itemHash}
-  //           className="feature__option"
-  //           name={slugify()}
-  //           checked={item.name === this.props.selected.name}
-  //           onChange={(e) => this.updateFeature()}
-  //         />
-  //         <label htmlFor={itemHash} className="feature__label">
-  //           {item.name} ({USCurrencyFormat.format(item.cost)})
-  //         </label>
-  //       </div>
-  //     );
-  //   });
-  // };
-
 class ListItem extends Component {
   render() {
-  const featuresObj = this.props.features;
-  const selectedObj = this.props.selected;
-  const selectedArr = Object.keys(selectedObj).map(selection => selection.name);
-  const options = Object.keys(featuresObj).map((feature, i) => 
-   (
-    <div key={i} className="feature__item">
-      <input 
-      type="radio"
-      id={i}
-      className="feature__option"
-      name={slugify(feature)}
-      checked={featuresObj[feature].name === selectedArr[i]}
-      />
-      <label htmlFor={i} className="feature__label">{featuresObj[feature].name} ({USCurrencyFormat.format(featuresObj[feature].cost)})</label>
-    </div>
-  ))
-    return <>{options}</>;
+    const myFunction = () => {
+      const optionsArray = Object.values(this.props.features).map(
+        (feature) => feature
+      );
+      for (let i = 0; i < optionsArray.length; i++) {
+        for (let j = 0; j < optionsArray[i].length; j++) {
+          const itemHash = slugify(JSON.stringify(optionsArray[i][j]));
+          return (
+            <div className="feature__item">
+              <input type="radio" id={itemHash} className="feature__option" />
+              <label htmlFor={itemHash} className="feature__label">
+                {optionsArray[i][j].name} (
+                {USCurrencyFormat.format(optionsArray[i][j].cost)})
+              </label>
+            </div>
+          );
+        }
+      }
+    };
+
+    return <>{myFunction()}</>;
   }
 }
 
