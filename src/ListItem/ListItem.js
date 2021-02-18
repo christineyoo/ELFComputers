@@ -58,7 +58,6 @@ class ListItem extends Component {
     const features = Object.keys(this.state.allFeatures).map(
       (feature) => feature
     );
-    console.log(features);
     return <div>Hello</div>;
   }
 }
