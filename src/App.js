@@ -4,11 +4,6 @@ import List from "./List/List";
 import NavBar from "./NavBar/NavBar";
 import CartList from "./CartList/CartList";
 
-const USCurrencyFormat = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
-
 class App extends Component {
   state = {
     selected: {
@@ -84,7 +79,6 @@ class App extends Component {
 
   render() {
     return (
-      <>
         <div className="App">
           <NavBar />
           <main>
@@ -96,7 +90,6 @@ class App extends Component {
             <CartList selected={this.state.selected} />
           </main>
         </div>
-      </>
     );
   }
 }
