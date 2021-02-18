@@ -9,28 +9,57 @@ const USCurrencyFormat = new Intl.NumberFormat("en-US", {
 });
 
 class ListItem extends Component {
-  render() {
-    const myFunction = () => {
-      const optionsArray = Object.values(this.props.features).map(
-        (feature) => feature
-      );
-      for (let i = 0; i < optionsArray.length; i++) {
-        for (let j = 0; j < optionsArray[i].length; j++) {
-          const itemHash = slugify(JSON.stringify(optionsArray[i][j]));
-          return (
-            <div className="feature__item">
-              <input type="radio" id={itemHash} className="feature__option" />
-              <label htmlFor={itemHash} className="feature__label">
-                {optionsArray[i][j].name} (
-                {USCurrencyFormat.format(optionsArray[i][j].cost)})
-              </label>
-            </div>
-          );
-        }
-      }
-    };
+  state = {
+    allFeatures: {
+      Processor: [
+        {
+          name: "17th Generation Intel Core HB (7 Core with donut spare)",
+          cost: 700,
+        },
+        {
+          name: "Professor X AMD Fire Breather with sidewinder technology",
+          cost: 1200,
+        },
+      ],
+      "Operating System": [
+        {
+          name: "Ubuntu Linux 16.04",
+          cost: 200,
+        },
+        {
+          name: "Bodhi Linux",
+          cost: 300,
+        },
+      ],
+      "Video Card": [
+        {
+          name: "Toyota Corolla 1.5v",
+          cost: 1150.98,
+        },
+        {
+          name: "Mind mild breeze 2000",
+          cost: 1345,
+        },
+      ],
+      Display: [
+        {
+          name: '15.6" UHD (3840 x 2160) 60Hz Bright Lights and Knobs',
+          cost: 1500,
+        },
+        {
+          name: '15.3" HGTV (3840 x 2160) Home makeover edition',
+          cost: 1400,
+        },
+      ],
+    },
+  };
 
-    return <>{myFunction()}</>;
+  render() {
+    const features = Object.keys(this.state.allFeatures).map(
+      (feature) => feature
+    );
+    console.log(features);
+    return <div>Hello</div>;
   }
 }
 

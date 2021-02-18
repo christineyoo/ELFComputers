@@ -45,7 +45,7 @@ class List extends Component {
         },
       ],
     },
-  };
+  }
   render() {
     const featuresKeyArr = Object.keys(this.props.allFeatures).map(
       (feature, idx) => {
@@ -58,7 +58,6 @@ class List extends Component {
             </legend>
             <ListItem
               onUpdateFeature={this.updateFeature}
-              features={this.props.allFeatures}
               selected={this.props.selected}
             />
           </fieldset>
@@ -66,12 +65,10 @@ class List extends Component {
       }
     );
     return (
-      <>
-        <form className="main__form">
-          <h2>Customize your laptop</h2>
-          {featuresKeyArr}
-        </form>
-      </>
+      <form className="main__form">
+        <h2>Customize your laptop</h2>
+        {featuresKeyArr}
+      </form>
     );
   }
 }
