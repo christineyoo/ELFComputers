@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import List from "./List/List";
 import NavBar from "./NavBar/NavBar";
+import CartList from "./CartList/CartList";
 
 const USCurrencyFormat = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -82,29 +83,6 @@ class App extends Component {
   };
 
   render() {
-    // Your cart section
-    const summary = Object.keys(this.state.selected).map((feature, idx) => {
-      const featureHash = feature + "-" + idx;
-      const selectedOption = this.state.selected[feature];
-
-      return (
-        <div className="summary__option" key={featureHash}>
-          <div className="summary__option__label">{feature} </div>
-          <div className="summary__option__value">{selectedOption.name}</div>
-          <div className="summary__option__cost">
-            {USCurrencyFormat.format(selectedOption.cost)}
-          </div>
-        </div>
-      );
-    });
-
-    // Calculates the total cost
-    const total = Object.keys(this.state.selected).reduce(
-      (acc, curr) => acc + this.state.selected[curr].cost,
-      0
-    );
-
-    // The NavBar section
     return (
       <>
         <div className="App">
@@ -115,17 +93,7 @@ class App extends Component {
               features={this.state.allFeatures}
               selected={this.state.selected}
             />
-
-            <section className="main__summary">
-              <h2>Your cart</h2>
-              {summary}
-              <div className="summary__total">
-                <div className="summary__total__label">Total</div>
-                <div className="summary__total__value">
-                  {USCurrencyFormat.format(total)}
-                </div>
-              </div>
-            </section>
+            <CartList selected={this.state.selected} />
           </main>
         </div>
       </>
