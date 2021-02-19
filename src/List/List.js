@@ -47,24 +47,16 @@ class List extends Component {
     },
   }
   render() {
-    const featuresKeyArr = Object.keys(this.props.allFeatures).map(
-      (featureName, idx) => {
-        const featureHash = featureName + "-" + idx;
-        return (
-          <fieldset className="feature" key={featureHash}>
+    // Return for the render
+    return (
+      <form className="main__form">
+        <h2>Customize your laptop</h2>
+        <fieldset className="feature" >
             <ListItem
               onUpdateFeature={this.updateFeature}
               selected={this.props.selected}
             />
           </fieldset>
-        );
-      }
-    );
-    // Return for the render
-    return (
-      <form className="main__form">
-        <h2>Customize your laptop</h2>
-        {featuresKeyArr}
       </form>
     );
   }
