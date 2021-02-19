@@ -41,7 +41,7 @@ class App extends Component {
         <NavBar />
         <main>
           <List
-            onUpdateFeature={this.updateFeature}
+            onUpdateFeature={(feature, newValue) => this.updateFeature(feature, newValue)}
             selected={this.state.selected}
           />
           <CartList selected={this.state.selected} />

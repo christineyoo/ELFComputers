@@ -8,7 +8,7 @@ class List extends Component {
         <h2>Customize your laptop</h2>
         <fieldset className="feature" >
             <ListItem
-              onUpdateFeature={this.updateFeature}
+              onUpdateFeature={this.props.onUpdateFeature}
               selected={this.props.selected}
             />
           </fieldset>

@@ -10,30 +10,29 @@ const USCurrencyFormat = new Intl.NumberFormat("en-US", {
 
 class ListItem extends Component {
   render() {
-    const features = Object.keys(Features).map((featureTitle) => {
+    const features = Object.keys(Features).map((featureTitle, idx) => {
+      const featureHash = featureTitle + "-" + idx;
       const options = Features[featureTitle].map((item) => {
         const itemHash = slugify(JSON.stringify(item));
         return (
-          <>
-            <div key={itemHash} className="feature__item">
-              <input
-                type="radio"
-                id={itemHash}
-                className="feature__option"
-                name={slugify(featureTitle)}
-                checked={item.name === this.props.selected[featureTitle].name}
-                onChange={(e) => this.props.onUpdateFeature(featureTitle, item)}
-              />
-              <label htmlFor={itemHash} className="feature__label">
-                {item.name} ({USCurrencyFormat.format(item.cost)})
-              </label>
-            </div>
-          </>
+          <div key={itemHash} className="feature__item">
+            <input
+              type="radio"
+              id={itemHash}
+              className="feature__option"
+              name={slugify(featureTitle)}
+              checked={item.name === this.props.selected[featureTitle].name}
+              onChange={(e) => this.props.onUpdateFeature(featureTitle, item)}
+            />
+            <label htmlFor={itemHash} className="feature__label">
+              {item.name} ({USCurrencyFormat.format(item.cost)})
+            </label>
+          </div>
         );
       });
 
       return (
-        <div>
+        <div key={featureHash}>
           <legend className="feature__name">
             <h3>{featureTitle}</h3>
           </legend>
