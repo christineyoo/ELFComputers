@@ -10,60 +10,40 @@ const USCurrencyFormat = new Intl.NumberFormat("en-US", {
 
 class ListItem extends Component {
   render() {
-    const features = Object.keys(Features).map((feature) => {
-      const options = Features[feature].map((item) => {
+    const features = Object.keys(Features).map((featureTitle) => {
+      const options = Features[featureTitle].map((item) => {
         const itemHash = slugify(JSON.stringify(item));
         return (
-          <div key={itemHash} className="feature__item">
-            <input
-              type="radio"
-              id={itemHash}
-              className="feature__option"
-              name={slugify(feature)}
-              // checked={item.name === this.state.selected[feature].name}
-              // onChange={(e) => this.updateFeature(feature, item)}
-            />
-            <label htmlFor={itemHash} className="feature__label">
-              {item.name} ({USCurrencyFormat.format(item.cost)})
-            </label>
-          </div>
+          <>
+            <div key={itemHash} className="feature__item">
+              <input
+                type="radio"
+                id={itemHash}
+                className="feature__option"
+                name={slugify(featureTitle)}
+                // checked={item.name === this.state.selected[feature].name}
+                // onChange={(e) => this.updateFeature(feature, item)}
+              />
+              <label htmlFor={itemHash} className="feature__label">
+                {item.name} ({USCurrencyFormat.format(item.cost)})
+              </label>
+            </div>
+          </>
         );
       });
 
-      return <div>{options}</div>;
+      return (
+        <div>
+          <legend className="feature__name">
+            <h3>{featureTitle}</h3>
+          </legend>
+          {options}
+        </div>
+      );
     });
-
-    return <>Render's return{features}</>;
+    // Return for the render
+    return <>{features}</>;
   }
 }
 
 export default ListItem;
-
-// const itemHash = slugify(JSON.stringify(item));
-{
-  /* <div key={itemHash} className="feature__item">
-            <input
-              type="radio"
-              id={itemHash}
-              className="feature__option"
-              name={slugify(feature)}
-              checked={item.name === this.props.selected[feature].name}
-              onChange={(e) => this.props.OnUpdateFeature(feature, item)}
-            />
-            <label htmlFor={itemHash} className="feature__label">
-              {item.name} ({USCurrencyFormat.format(item.cost)})
-            </label>
-          </div> */
-}
-
-// const features = Object.keys(Features);
-// const firstFeature = features[0];
-// const secondFeature = features[1];
-// const thirdFeature = features[3];
-// const fourthFeature = features[4];
-// const firstFeatureName = Features[firstFeature][0].name;
-// const secondFeatureName = Features[firstFeature][1].name;
-
-// const processorFeatures = () => {
-//   return firstFeatureName + secondFeatureName;
-// }
